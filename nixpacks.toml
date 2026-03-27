@@ -1,0 +1,8 @@
+[phases.setup]
+nixPkgs = ["php81", "php81Extensions.pdo_mysql", "php81Extensions.mbstring", "php81Extensions.xml", "php81Extensions.curl", "php81Extensions.gd", "php81Extensions.zip", "php81Extensions.bcmath", "php81Extensions.tokenizer"]
+
+[phases.build]
+cmds = ["composer install --no-dev --optimize-autoloader", "npm install", "npm run build"]
+
+[start]
+cmd = "chmod +x ./railway/init-app.sh && sh ./railway/init-app.sh && php artisan serve --host=0.0.0.0 --port=${PORT:-8080}"
